@@ -1,0 +1,40 @@
+Q 1:
+Set up the wolf dataset as before and in class-
+make are the 'local' variables, including 'Hunting'.
+Using the variable 'Hunting', produce a table to see how many male wolves are in each hunting group.
+
+Create these two subsets:
+Light_M = male wolves which are lightly hunted
+and Heavy_M = male wolves who are heavily hunted.
+
+and make a histogram of each of these subsets for the variable Tpgmg (Testosterone) and place the
+two histograms one above the other using par(mfrow()) function.  (i.e. 2 plots on the one page- one above the other).
+
+Q2:
+Make one histogram of the male wolves now using the following commands exactly:
+
+par(mfrow=c(1,1))
+hist(Light_M$Tpgmg,main='Testosterone in Male Wolves',xlab='Testosterone (pg/mg)',col=5)
+hist(Heavy_M$Tpgmg,density=10,add=T) 
+
+b.
+Now using xlim and ylim (look at the two histograms in Q1 to figure them out) fix that graph.
+
+Q3:
+Change the fonts as follows:
+labelling font is bold; title font is bold and italic; axes (i.e. the numbers on the axes) are italic.
+
+Also:
+Specify the bin size for the bars as '2'.  Do this using the 'breaks=' argument of hist.
+Hint: using the 'seq()' function you can specify breaks as seq(min,max,by=2), where min and max are from the xlim you specified.  You will need to specify the breaks for both histograms.
+
+Change the bin size to 3 (if you use seq the max may need to be a multiple of 3 that is higher than your previous xlim).  See how the histogram profile changes.
+
+Q4:  (May be Homework-)
+Add a legend to the plot from Q3,  as was done in class.  
+Recall that the command arguments for legend are different than for boxplot.
+In legend:
+bty means: do you want a box or not (Y/N)
+angle: the angle for lines that will be drawn- this combined with density is instead of the 'density' argument in boxplot.
+density: whether to have a solid box or lines
+fill: fill the colour squares

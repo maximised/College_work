@@ -1,0 +1,27 @@
+from orc_file import Orc
+import shelve
+
+orc1 = Orc('Jerry', 3, 5, False)
+orc2 = Orc('John', 5, 9, False)
+
+print(orc1)
+print(orc2)
+
+orc2.attack(orc1)
+
+print(orc1)
+print(orc2)
+
+
+
+#################################
+
+import os
+
+db = shelve.open('orc' + orc2.name)
+db['orc' + orc2.name] = orc2
+
+
+print(db['orcJohn'])
+
+db.close()

@@ -1,0 +1,3 @@
+This is a project to create game characters using inheritance and some of the aspects of polymorphism. The human character is at 
+the top of the hierarchy and the other characters inherit from it. characters can attack each other. Knights can lead archers,
+using composition of objects.
