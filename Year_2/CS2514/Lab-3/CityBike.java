@@ -34,7 +34,17 @@ public final class CityBike implements Bike {
     * bike has
     */
     @Override
-    void printComponents() {
+    void print() {
+        super.printComponents();
+        System.out.println(frontlight);
+        System.out.println(rearlight);
+        System.out.println(carrier);
+        System.out.println(highframe);
+        System.out.println();
+    }
+
+    @Override
+    void println() {
         super.printComponents();
         System.out.println(frontlight);
         System.out.println(rearlight);

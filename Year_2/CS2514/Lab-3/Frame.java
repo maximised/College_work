@@ -3,7 +3,7 @@
  * 
  * @author: MAXIM CHOPIVSKYY (118364841)
  */
-public interface Frame implements Component {
-    final private String LABEL = "frame";
+public interface Frame extends Component {
+    final String LABEL = "frame";
 
 }

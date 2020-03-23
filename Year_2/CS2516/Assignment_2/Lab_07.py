@@ -164,7 +164,7 @@ class Graph:
 
     def __init__(self):
         """ Create an initial empty graph. """
-        self._structure = dict()
+        self._structure = dict()  # { vertex: {} }
 
     def __str__(self):
         """ Return a string representation of the graph. """
@@ -400,6 +400,8 @@ class Graph:
                 central_key = key
         return str(central_key), min_longest_path, self.adaptedbreadthfirstsearch(key)
 
+
+
 #################################################################################
 #################################################################################
 
@@ -425,12 +427,22 @@ class Element:
     def __str__(self):
         return str(self._value)
 
+    def __repr__(self):
+        return str(self._value)
+
 
 class APQ_binary_heap:
     ''' Adapts the Elements with keys and values into an adaptable priority queue. '''
 
     def __init__(self):
         self.structure = []
+
+    def __str__(self):
+        struct = self.structure
+        out = {}
+        for e in struct:
+            out[e._key] = e
+        return str(out)
 
     def add(self, key, item):
         """ Add an Element to the Queue and bubble it up heap to correct position.
@@ -448,7 +460,7 @@ class APQ_binary_heap:
     def min(self):
         """ Return highest Priority Element.
         """
-        return self.structure[0]
+        return self.structure[0]._key, self.structure[0]._value
 
     def remove_min(self):
         """ Remove and return highest Priority Element.
@@ -458,16 +470,16 @@ class APQ_binary_heap:
             return None
 
         # swaps first and last element
-        e = self.min()
+        key, value = self.min()
         self.structure[0], self.structure[-1] = self.structure[-1], self.structure[0]
         self.structure[0]._index = 0
         self.structure.pop()
         if self.length() <= 1:
-            return e
+            return key, value
 
         # Bubble the first element down.
         self._bubble_down(0)
-        return e
+        return key, value
 
     def length(self):
         """ Return number of Elements in Queue.
@@ -478,7 +490,7 @@ class APQ_binary_heap:
         """ Assigns and updates key of element.
 
         Args:
-            element - Element object
+            element - Elements item value (vertex)
             newkey - new key assigned to element
         """
         e = self.get_element(element)
@@ -494,13 +506,24 @@ class APQ_binary_heap:
         else:
             self._bubble_down(index)
 
-    def get_key(self, element):
-        """ Return key of element
+    def update_element(self, value, new_value):
+        """ Change value of element with value to new_value
 
         Args:
-            element - Element object
+            value - current value of Element
+            new_value - new value we will assign to Element
         """
-        e = self.get_element(element)
+        e = self.get_element(value)
+        e._value = new_value
+
+
+    def get_key(self, value):
+        """ Return key of element with value
+
+        Args:
+            value - Element._value
+        """
+        e = self.get_element(value)
         return e._key
 
     def remove(self, element):
@@ -522,7 +545,7 @@ class APQ_binary_heap:
 
         # if last element is removed
         if index >= self.length():
-            return e
+            return e._key, e._value
 
         # if any other element is removed, bubble swapped element
         if index == 0:
@@ -531,7 +554,7 @@ class APQ_binary_heap:
             self._bubble_up(index)
         else:
             self._bubble_down(index)
-        return e
+        return e._key, e._value
 
     def _bubble_up(self, l):
         """ Bubbles an element up the queue to its position based on key
@@ -565,6 +588,7 @@ class APQ_binary_heap:
                 i = j
             else:
                 break
+
     def get_element(self, value):
         """ finds element object based on its item value
 
@@ -577,68 +601,10 @@ class APQ_binary_heap:
         return None
 
 
-"""
-apq = APQ_binary_heap()
-c = 20
-
-graph = graphreader("simplegraph2.txt")
-for v in graph.vertices():
-    apq.add(c, v)
-    c -= 2
-
-apq.remove_min()
-
-#for e in apq.structure:
-#    print(e, e._index, e._key)
-"""
-
-def djikstra(s):
-    """ Creates minimum spanning tree from vertex s
-
-    Args:
-        s - vertex from where to start the tree
-    """
-    open = APQ_binary_heap()
-    locs = {}
-    closed = {}
-    preds = {s: None}
-
-    locs[s] = open.add(0, s)
-    while open.length() > 0:
-        v = open.remove_min()
-        del locs[v._value]
-        predecessor = preds.pop(v._value)
-        closed[v._value] = (v._key, predecessor)
-        for e in graph.get_edges(v._value):
-            w = e.opposite(v._value)
-            if w not in closed:
-                newcost = v._key + e._element
-                if w not in locs:   # not added in open
-                    preds[w] = v._value
-                    locs[w] = open.add(newcost, w)
-                elif newcost < open.get_key(w):
-                    preds[w] = v._value
-                    open.update_key(w, newcost)
-    return closed
-
-"""
-spanning_tree = djikstra(graph.vertices()[9])
-
-print(spanning_tree)
-"""
-
 
 ###############################################################################
 ###############################################################################
 # (ii)
-'''
-class RouteVertex(Vertex):
-    def __init__(self, element, latitide, longitude):
-        Vertex.__init__(self, element)
-        self.latitude = latitude
-        self.longitude = longitude
-        self.coordinates = (latitude, longitude)
-'''
 
 def routegraphreader(filename):
     """ Read and return the route map in filename. """
@@ -706,16 +672,18 @@ class RouteMap(Graph):
         return v
 
 
-    def get_vertex_by_label(self, element):
+    def get_vertex_by_label(self, label):
         """ Return the first vertex that matches element.
 
         Args:
             element - label of the vertex being searched
         """
-        if element in self._labels_vertices_pairs:
-            return self._labels_vertices_pairs[element]
+        if label in self._labels_vertices_pairs:
+            return self._labels_vertices_pairs[label]
         return None
 
+    # --------------------------------------------------- #
+    # The following are special algorithms for finding specific paths and trees
 
     def sp(self, v, w):
         """ Gets the shortest path from v to w using the djikstras algorithm.
@@ -763,26 +731,35 @@ class RouteMap(Graph):
 
         locs[s] = open.add(0, s)
         while open.length() > 0:
-            v = open.remove_min()
-            del locs[v._value]
-            predecessor = preds.pop(v._value)
-            closed[v._value] = (v._key, predecessor)
-            for e in self.get_edges(v._value):
-                w = e.opposite(v._value)
+            key, value = open.remove_min()
+            del locs[value]
+            predecessor = preds.pop(value)
+            closed[value] = (key, predecessor)
+            for e in self.get_edges(value):
+                w = e.opposite(value)
                 if w not in closed:
-                    newcost = v._key + e._element
+                    newcost = key + e._element
                     if w not in locs:  # not added in open
-                        preds[w] = v._value
+                        preds[w] = value
                         locs[w] = open.add(newcost, w)
                     elif newcost < open.get_key(w):
-                        preds[w] = v._value
+                        preds[w] = value
                         open.update_key(w, newcost)
         return closed
 
+
+
+
+# ------------------------------------------------- #
+# Testing code below
+
 routegraph = routegraphreader("corkCityData.txt")
 print(routegraph)
+print()
 
+print("djikstra's test between vertices 1495685533 and 882652308:")
 source = routegraph.get_vertex_by_label(1495685533)
 dest = routegraph.get_vertex_by_label(882652308)
 route = routegraph.sp(source, dest)
 routegraph.printvlist(route)
+print()

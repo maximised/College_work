@@ -12,12 +12,12 @@ public final class Main {
      */
      public static void main( String[] args){
      Bike cityBike = new CityBike();
-     cityBike.printComponents();
+     cityBike.print();
 
      Bike mountainBike = new MountainBike();
-     mountainBike.printComponents();
+     mountainBike.print();
 
      Bike hybridBike = new Hybrid();
-     hybridBike.printComponents();
+     hybridBike.print();
      }
 }

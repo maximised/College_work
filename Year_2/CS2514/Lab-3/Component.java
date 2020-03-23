@@ -6,6 +6,6 @@
 public interface Component {
     public void print();
 
-    public println();
+    public void println();
 }
 

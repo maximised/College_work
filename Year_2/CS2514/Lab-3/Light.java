@@ -1,9 +1,9 @@
 /**
 * the superclass to all lights
 */
-public interface Light implements Component {
-    final private String LABEL = "light";
-    private String state = "off";
+public interface Light extends Component {
+    final String LABEL = "light";
+    String state = "off";
 
     public void turnOn();
 

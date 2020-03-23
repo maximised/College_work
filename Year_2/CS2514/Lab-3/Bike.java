@@ -4,7 +4,7 @@
  * @author: MAXIM CHOPIVSKYY (118364841)
  */
 public interface Bike {
-    private final String LABEL = "bike";
+    final String LABEL = "bike";
 
     /**
     * This prints all the shared components of all bikes
