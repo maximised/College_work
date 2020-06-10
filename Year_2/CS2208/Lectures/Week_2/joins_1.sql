@@ -1,0 +1,28 @@
+
+DROP DATABASE IF EXISTS test_db;
+CREATE DATABASE IF NOT EXISTS test_db;
+
+USE test_db;
+
+CREATE TABLE A (
+	num INT,
+	square INT
+);
+
+CREATE TABLE B (
+	num INT,
+	cube1 INT
+);
+
+INSERT INTO A VALUES (2, 4);
+INSERT INTO A VALUES (3, 9);
+INSERT INTO A VALUES (4, 16);
+
+INSERT INTO B VALUES (2, 8);
+INSERT INTO B VALUES (3, 18);
+INSERT INTO B VALUES (5, 75);
+
+SELECT A.num, A.square, B.cube1 FROM A  LEFT JOIN B ON A.num = B.num;
+
+SELECT B.num, B.cube1, A.square FROM A  RIGHT JOIN B ON A.num = B.num;
+
