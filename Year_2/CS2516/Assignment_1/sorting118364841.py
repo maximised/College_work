@@ -34,8 +34,8 @@ def  _quicksort(list, pivot, end):
         sub_pivot = pivot
         pivot_value = list[pivot]
         while (left_index <= right_index):
-            while right_index >= left_index:
-                if (list[right_index] < pivot_value):
+            while left_index <= right_index:
+                if (pivot_value > list[right_index]):
                     sub_pivot = right_index
                     break
                 right_index -= 1
@@ -43,7 +43,7 @@ def  _quicksort(list, pivot, end):
             while (left_index < right_index) and (list[left_index] <= pivot_value):
                 left_index += 1
 
-            if (right_index >= left_index):
+            if (left_index <= right_index):
                 list[right_index], list[left_index] = list[left_index], list[right_index]
                 sub_pivot = left_index
                 right_index -= 1
