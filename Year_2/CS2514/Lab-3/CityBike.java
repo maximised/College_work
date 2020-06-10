@@ -1,56 +1,53 @@
 /**
- * Inherits from the Bike class and adds components for the City Bike
- *
  * @author: MAXIM CHOPIVSKYY (118364841)
  */
+
+import java.util.*;
+import java.lang.*;
+
 public final class CityBike implements Bike {
-    private FrontLight frontlight;
-    private RearLight rearlight;
-    private Carrier carrier;
-    private HighFrame highframe;
+
+    private FrontLight frontlight = new FrontLight();
+    private RearLight rearlight = new RearLight();;
+    private Carrier carrier = new Carrier();
+    private HighFrame highframe = new HighFrame();
     private final String LABEL = "city bike";
 
-    /**
-    * This is the constructor to create a City Bike
-    */
+    private ConcreteBike citybike = new ConcreteBike( LABEL, highframe );
+
+
     public CityBike() {
-        super();
-        this.frontlight = new FrontLight();
-        this.rearlight =  new RearLight();
-        this.carrier = new Carrier();
-        this.highframe = new HighFrame();    
-    }
-
-    /**
-    * allows to print the name of the bike class
-    * @return String is the type of bike
-    */
-    public String toString() {
-        return this.LABEL;
-    }
-
-    /**
-    * This prints all the components of the City Bike including the shared components every
-    * bike has
-    */
-    @Override
-    void print() {
-        super.printComponents();
-        System.out.println(frontlight);
-        System.out.println(rearlight);
-        System.out.println(carrier);
-        System.out.println(highframe);
-        System.out.println();
+        this.citybike.add_component( frontlight );
+        this.citybike.add_component( rearlight );
+        this.citybike.add_component( carrier );
     }
 
     @Override
-    void println() {
-        super.printComponents();
-        System.out.println(frontlight);
-        System.out.println(rearlight);
-        System.out.println(carrier);
-        System.out.println(highframe);
-        System.out.println();
+    public void print() {
+        citybike.print();
+    }
+
+    @Override
+    public void println() {
+        citybike.println();
+    }
+
+    @Override
+    public Iterator<Component> iterator() {
+        final ArrayList<Component> component_list = citybike.get_components();
+        return new Iterator<Component>() {
+            int position = 0;
+
+            @Override
+            public boolean hasNext() {
+                return position != component_list.size();
+            }
+
+            @Override
+            public Component next() {
+                return component_list.get( position++ );
+            }
+        };
     }
 }
 

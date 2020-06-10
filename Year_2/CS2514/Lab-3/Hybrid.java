@@ -1,44 +1,49 @@
 /**
- * Inherits from the Bike class and adds components for the Hybrid Bike
- *
  * @author: MAXIM CHOPIVSKYY (118364841)
  */
+
+import java.util.*;
+import java.lang.*;
+
 public final class Hybrid implements Bike {
-    private FrontLight frontlight;
-    private RearLight rearlight;
-    private MediumFrame mediumframe;
+    private FrontLight frontlight = new FrontLight();
+    private RearLight rearlight = new RearLight();
+    private MediumFrame mediumframe = new MediumFrame();;
     private final String LABEL = "hybrid";
 
-    /**
-    * This is the constructor to create a Hybrid Bike
-    */
+    private ConcreteBike hybrid = new ConcreteBike( LABEL, mediumframe );
+
     public Hybrid() {
-         super();
-         this.frontlight = new FrontLight();
-         this.rearlight = new RearLight();
-         this.mediumframe = new MediumFrame();
+         this.hybrid.add_component( frontlight );
+         this.hybrid.add_component( rearlight );
     }
 
-    /**
-    * allows to print the name of the bike class
-    * @return String is the type of bike
-    */
     @Override
-    public String toString() {
-        return this.LABEL;
+    public void print() {
+        hybrid.print();
     }
 
-    /**
-    * This prints all the components of the Hybrid Bike including the shared components every
-    * bike has
-    */
     @Override
-    void print() {
-        super.printComponents();
-        System.out.println(frontlight);
-        System.out.println(rearlight);
-        System.out.println(mediumframe);
-        System.out.println();
+    public void println() {
+        hybrid.println();
+    }
+
+    @Override
+    public Iterator<Component> iterator() {
+        final ArrayList<Component> component_list = hybrid.get_components();
+        return new Iterator<Component>() {
+            int position = 0;
+
+            @Override
+            public boolean hasNext() {
+                return position != component_list.size();
+            }
+
+            @Override
+            public Component next() {
+                return component_list.get( position++ );
+            }
+        };
     }
 }
 

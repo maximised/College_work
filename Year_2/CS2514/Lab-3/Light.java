@@ -1,9 +1,8 @@
 /**
-* the superclass to all lights
-*/
+ * @author: MAXIM CHOPIVSKYY (118364841)
+ */
+
 public interface Light extends Component {
-    final String LABEL = "light";
-    String state = "off";
 
     public void turnOn();
 

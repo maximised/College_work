@@ -1,38 +1,46 @@
 /**
- * Inherits from the Bike class and adds components for the Mountain Bike
- *
  * @author: MAXIM CHOPIVSKYY (118364841)
  */
+
+import java.util.*;
+import java.lang.*;
+
 public final class MountainBike implements Bike {
-    private LowFrame lowframe;
+    private LowFrame lowframe = new LowFrame();
     private final String LABEL = "mountain bike";
 
-    /**
-    * This is the constructor to create a Mountain Bike
-    */
+    private ConcreteBike mountainbike = new ConcreteBike( LABEL, lowframe );
+
+
     public MountainBike() {
-        super();
-        this.lowframe = new LowFrame();     
     }
 
-    /**
-    * allows to print the name of the bike class
-    * @return String is the name of bike
-    */
     @Override
-    public String toString() {
-        return this.LABEL;
+    public void print() {
+        mountainbike.print();
     }
 
-    /**
-    * This prints all the components of the Mountain Bike including the shared components every
-    * bike has
-    */
     @Override
-    void printComponents() {
-        super.printComponents();
-        System.out.println(lowframe);
-        System.out.println();
+    public void println() {
+        mountainbike.println();
+    }
+
+    @Override
+    public Iterator<Component> iterator() {
+        final ArrayList<Component> component_list = mountainbike.get_components();
+        return new Iterator<Component>() {
+            int position = 0;
+
+            @Override
+            public boolean hasNext() {
+                return position != component_list.size();
+            }
+
+            @Override
+            public Component next() {
+                return component_list.get( position++ );
+            }
+        };
     }
 }
 

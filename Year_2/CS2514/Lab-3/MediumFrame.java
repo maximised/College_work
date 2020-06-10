@@ -1,15 +1,13 @@
 /**
- * inherits from the Frame class to create the medium frame of a bike
+ * @author: MAXIM CHOPIVSKYY (118364841)
  */
+
 public final class MediumFrame implements Frame {
     final private String LABEL = "medium frame";
+    private ConcreteComponent mediumframe = new ConcreteComponent( LABEL );
 
-    /**
-    * allows us to print what type of component this is
-    * @return String is the type of component
-    */
     @Override
-    public String toString( ) {
-        return this.LABEL;
+    public void print( ) {
+        mediumframe.print();
     }
 }

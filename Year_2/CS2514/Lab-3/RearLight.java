@@ -1,32 +1,26 @@
 /**
- * inherits from the components class to create the rear light of a bike
+ * @author: MAXIM CHOPIVSKYY (118364841)
  */
+
 public final class RearLight implements Light {
     final private String LABEL = "rear light";
     private String state = "off";
+       
+    private ConcreteLight rearlight = new ConcreteLight( LABEL, state );
 
-    /**
-    * allows us to print what type of component this is
-    * @return String is the type of component and whether its on or off
-    */
-    @Override
-    public String toString() {
-        return this.LABEL + ": " +  this.state;
-    }
 
-    /**
-    * lets us turn on the light
-    */
     @Override
     public void turnOn() {
         this.state = "on";
     }
 
-    /**
-    * lets us turn off the light
-    */
     @Override
     public void turnOff() {
         this.state = "off";
+    }
+
+    @Override
+    public void print( ) {
+        rearlight.print();
     }
 }

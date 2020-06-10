@@ -1,15 +1,13 @@
 /**
- * inherits from the frame class to create the low frame of a bike
+ * @author: MAXIM CHOPIVSKYY (118364841)
  */
+
 public final class LowFrame implements Frame {
     final private String LABEL = "low frame";
+    private ConcreteComponent lowframe = new ConcreteComponent( LABEL );
 
-    /**
-    * allows us to print what type of component this is
-    * @return String is the type of component
-    */
     @Override
-    public String toString( ) {
-        return this.LABEL;
+    public void print( ) {
+        lowframe.print();
     }
 }

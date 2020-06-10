@@ -1,15 +1,14 @@
 /**
- * inherits from the Frame class to create the high frame of a bike
+ * @author: MAXIM CHOPIVSKYY (118364841)
  */
+
 public final class HighFrame implements Frame {
     final private String LABEL = "high frame";
+    private ConcreteComponent highframe = new ConcreteComponent( LABEL );
 
-    /**
-    * allows us to print what type of component this is
-    * @return String is the type of component
-    */
+
     @Override
-    public String toString( ) {
-        return this.LABEL;
+    public void print( ) {
+        highframe.print();
     }
 }
