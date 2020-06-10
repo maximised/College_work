@@ -1,0 +1,55 @@
+Module: CS2209
+Lecturer: Dr. Alejandro Arbelaez
+
+Name: Maxim Chopivskyy
+Student ID: 118364841
+
+Part 1
+1. db.players.aggregate([ { $group: {_id:"$position", total:{$avg:"$age"}} } ])
+
+2. db.players.aggregate( [ {$sort: {age:1}}, {$limit: 1} ] )
+
+3. db.players.aggregate( [ {$sort: {age:-1}}, {$limit: 1} ] )
+
+
+Part 2
+1. 
+use company
+db.createCollection("employees")
+
+db.employees.insert( {fname:"John", minit:"B", lname:"Smith", ssn:"123456789", bdate:"09-Jan-55", 
+address:"731 Fondren, Houston, TX", sex:"M", salary:30000, superssn:"987654321", dno:5, 
+dlocation:["Bellaire", "Sugarland", "Houston"], dependent:[ {dependent_name:"Alice", sex:"F", 
+bdate:"31-Dec-78", relationship:"Daughter"}, {dependent_name:"Elizabeth", sex:"F", bdate:"05-May-57", 
+relationship:"Spouse"}, {dependent_name:"Michael", sex:"M", bdate:"01-Jan-78", relationship:"Son"}], 
+works_on:[{pno:1, pname:"ProductX", plocation:"Bellaire", hours:32.5, dno:5}, {pno:2, pname:"ProductY", 
+plocation:"Sugarland", hours:7.5, dno:5}] } ) 
+
+db.employees.insert( [ {fname:"Franklin", minit:"T", lname:"Wong", ssn:"333445555", bdate:"08-Dec-45", 
+address:"638 Voss, Houston, TX", sex:"M", salary:40000, superssn:"88866555", dno:5, 
+dlocation:["Bellaire", "Sugarland", "Houston"], dependent:[ {dependent_name:"Alice", sex:"F", bdate:"05-Apr-76", 
+relationship:"Daughter"}, {dependent_name:"Joy", sex:"F", bdate:"03-May-48", relationship:"Spouse"}, 
+{dependent_name:"Theodore", sex:"M", bdate:"25-Oct-73", relationship:"Son"}],
+ works_on:[{pno:2, pname:"ProductY", plocation:"Sugarland", hours:7.5, dno:5}, {pno:3, pname:"ProductZ",
+ plocation:"Houston", hours:10, dno:5}, {pno:10, pname:"Computerization", plocation:"Stafford", hours:10, dno:4}, {pno:20, pname:"Reorganization", plocation:"Houston", hours:10, dno:1}] }, {fname:"Joyce", minit:"A", lname:"English", ssn:"453453453", bdate:"31-Jul-62", address:"5631 Rice, Houston, TX", sex:"M", salary:25000, superssn:"333445555", dno:5, dlocation:["Bellaire", "Sugarland", "Houston"], dependent:[ ], works_on:[{pno:1, pname:"ProductX", plocation:"Bellaire", hours:20, dno:5}, {pno:2, pname:"ProductY", plocation:"Sugarland", hours:20, dno:5}] }, {fname:"Ramesh", minit:"K", lname:"Narayan", ssn:"666884444", bdate:"15-Sep-52", address:"975 Fire Oak, Humble, TX", sex:"M", salary:38000, superssn:"333445555", dno:5, dlocation:["Bellaire", "Sugarland", "Houston"], dependent:[ ], works_on:[{pno:3, pname:"ProductZ", plocation:"Houston", hours:40, dno:5}] }, {fname:"James", minit:"E", lname:"Borg", ssn:"888665555", bdate:"10-Nov-27", address:"450 Stone, Houston, TX", sex:"M", salary:55000, dno:1, dlocation:["Houston"], dependent:[ ], works_on:[{pno:20, pname:"Reorganization", plocation:"Houston", dno:1}] }, {fname:"Jennifer", minit:"S", lname:"Wallace", ssn:"987654321", bdate:"20-Jun-31", address:"291 Berry, Bellaire, TX", sex:"F", salary:43000, superssn:"88866555", dno:4, dlocation:["Stafford"], dependent:[ {dependent_name:"Abner", sex:"M", bdate:"29-Feb-32", relationship:"Spouse"}], works_on:[{pno:20, pname:"Reorganization", plocation:"Houston", hours:15, dno:1}, {pno:30, pname:"Newbenefits", plocation:"Stafford", hours:20, dno:4}] }, {fname:"Ahmad", minit:"V", lname:"Jabbar", ssn:"987987987", bdate:"29-Mar-59", address:"980 Dallas, Houston, TX", sex:"M", salary:25000, superssn:"987654321", dno:4, dlocation:["Stafford"], dependent:[ ], works_on:[{pno:10, pname:"Computerization", plocation:"Stafford", hours:35, dno:4}, {pno:30, pname:"Newbenefits", plocation:"Stafford", hours:5, dno:4} ]}, {fname:"Alicia", minit:"J", lname:"Zelaya", ssn:"99988777", bdate:"19-Jul-58", address:"3321 Castle, Spring, TX", sex:"F", salary:25000, superssn:"987654321", dno:4, dlocation:["Stafford"], dependent:[ ], works_on:[{pno:10, pname:"Computerization", plocation:"Stafford", hours:10, dno:4}, {pno:30, pname:"Newbenefits", plocation:"Stafford", hours:30, dno:4}] } ] )
+
+
+2.
+db.employees.aggregate( {$match:{lname:"Smith"}}, {$project:{"works_on.pno":1, "_id":0}}, {$unwind:"$works_on"} )
+
+project number list is: [1, 2]
+
+
+3.
+db.employees.aggregate( { $match:{superssn:{$exists:false}} }, { $project: {fname:1, lname:1, address:1} } )
+this finds employee with no superssn
+
+
+4.
+We compute the following formula to find average:
+(total number of employees) / (total number of departments)
+8 / 3 = 2.66
+
+mongo query:
+db.employees.count() / db.employees.distinct("dno").length
+
