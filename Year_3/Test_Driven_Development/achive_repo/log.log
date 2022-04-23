@@ -1,0 +1,191 @@
+* commit 3256df3ad7fef425d1be0054b9947fa3792801ae
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Tue Dec 15 14:20:03 2020 +0000
+| 
+|     Added JavaDoc
+| 
+* commit 153441070b529745651ba906dc8ddec3825ae894
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Tue Dec 15 12:20:16 2020 +0000
+| 
+|     Refactored
+| 
+* commit fd51703708e680b8399b2d84a9b200e1728583a1
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Mon Dec 14 00:24:03 2020 +0000
+| 
+|     Refactored
+| 
+* commit 5cc1ad13a1cdcfa8c28a9e0ae1b48cde347462e3
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 20:20:08 2020 +0000
+| 
+|     refactored exceptionIfCharacterInModelRepeated
+| 
+* commit 4012a3f8b424eb1d6d0dfbe0c1f06aaa72ce5d6c
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 19:49:41 2020 +0000
+| 
+|     Refactored add method
+| 
+* commit be378316b0d5d03366e26ecbf3d63215c5953424
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 19:02:41 2020 +0000
+| 
+|     Implemented throw when models are different in add method
+| 
+* commit c0cf9df24f4731e4cae7d0ce7e54561e6dca55e1
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 18:59:02 2020 +0000
+| 
+|     Create Test to check if add throws exception when models are different
+| 
+* commit 00c7877654eec46088f5ce4db90ff37598e2c97d
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 18:52:09 2020 +0000
+| 
+|     Implemented/updated add method for adding values that go over 255.
+| 
+* commit c1f758ea307202c49b9628eb477ea9246e422476
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 18:29:27 2020 +0000
+| 
+|     Create test for add when values go above 255
+| 
+* commit f01bdf8e16bd1a597c76e8bc1bd5e15318be08c5
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 18:23:14 2020 +0000
+| 
+|     Implemented add method for values under 255
+| 
+* commit 05900f58b4417b1c66359f4d43be404a96dbbb69
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 18:10:20 2020 +0000
+| 
+|     Created Test for add method when no values go over 255
+| 
+* commit ca602f801b37430b73f1290ae1fb0a66f7f246d6
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 01:10:35 2020 +0000
+| 
+|     Refactored equals method
+| 
+* commit 8e01f5ef109381f1bda70378511b6d224e76526d
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 01:04:40 2020 +0000
+| 
+|     Create Tests for asserting colours dont equal each other when model or values are different.
+| 
+* commit 41b40aacad01a60730b9affb042f9e38f92199d3
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 00:57:48 2020 +0000
+| 
+|     Implemented equals method for Colour
+| 
+* commit 95fee9c835d11350d4decc46799ad117bdb6d66f
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Sat Dec 12 00:41:10 2020 +0000
+| 
+|     Created Test for equals method returning true when model and values are the same.
+| 
+* commit 660a68fe02f56180a45f640975af93838f9d7d56
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 22:13:50 2020 +0000
+| 
+|     Refactored exceptionIfCharacterInModelRepeated
+| 
+* commit a9ea2f05dd30519af6ea70b47e3279f956ee33ee
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 17:26:40 2020 +0000
+| 
+|     Test if No exception thrown when every character unique in model
+| 
+* commit 1f956cdad7d175cfee0fc5055f1adf85fe9d37f2
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 17:23:08 2020 +0000
+| 
+|     Implemented exception if character is repeated in model string
+| 
+* commit 9e266b587faa494225ebc8e79af32e29aea7df53
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 16:34:39 2020 +0000
+| 
+|     Created test to check if exception is thrown when Character repeated in Model specification
+| 
+* commit ad6e5344f91cd1e35f826c96f06d3ee8b78f916a
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 16:21:00 2020 +0000
+| 
+|     Refactored method throwing exception if value out of range
+| 
+* commit 47abfca014ba6ff4bbd9b7ae2ec70437164afd7d
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 16:12:44 2020 +0000
+| 
+|     Test to check NO exception thrown when values satisfy range
+| 
+* commit de10c56e1833009bfc9906dd81e1bdf2799e9b5c
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 16:05:49 2020 +0000
+| 
+|     Implemented Exception when value out of range
+| 
+* commit 0b5d099b6abdaa8862667108d3b2eeedca63c623
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 15:49:43 2020 +0000
+| 
+|     Created test, checking if exception is thrown when any values are out of range.
+| 
+* commit 69201e6e084a87f33c566f410a2d9c180c97c19d
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 14:07:20 2020 +0000
+| 
+|     Test if exception not thrown when model and component values same length. Test passed
+| 
+* commit 191d59d5750cbebf2d40faccb08a447b473c27f4
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 14:03:09 2020 +0000
+| 
+|     Created Test check if Exception Thrown when Model shorter than values. It passed.
+| 
+* commit b6ada49e7afeb1b85afc0a2f6c1bc61500b48329
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 13:51:58 2020 +0000
+| 
+|     Refactored exception when not same length
+| 
+* commit 010f4566ad722e9cabb70836092c2039ce718d6d
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 13:50:49 2020 +0000
+| 
+|     Implemented checking if exception thrown when model and values not same length.
+| 
+* commit 675207ef8b8b822118df0962f21ae1f8e59ccedc
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 13:33:25 2020 +0000
+| 
+|     Made test checking if length of model is longer than component values
+| 
+* commit a080372b550dee03f9cc7da39b1d04bdbb3a77b0
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 13:14:35 2020 +0000
+| 
+|     Tested if component values are correct for a specified model.
+| 
+* commit 3ae03634ba6e4cfbf546b08d4ba1a92b83227bd0
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 13:04:26 2020 +0000
+| 
+|     refactored the code so the model_values_dict is final and could be initialised. Also added getters for fields
+| 
+* commit 1088b15042000757a33f94053043d36c3d8a624d
+| Author: Maxim <maximchopivskyy@outlook.com>
+| Date:   Fri Dec 11 12:47:55 2020 +0000
+| 
+|     made a test to check if the values are correct in colour object and created the Colour methods to do the implementation.
+| 
+* commit 3e58ff99bc01069f24622326bfd533908674d60d
+  Author: Maxim <maximchopivskyy@outlook.com>
+  Date:   Fri Dec 11 12:06:25 2020 +0000
+  
+      first commit
